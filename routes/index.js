@@ -5,7 +5,7 @@ var quizController = require("../controllers/quiz_controller");
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'miQuiz' });
+  res.render('index', { title: 'miQuiz', errors: [] });
 });
 
 /* GET página de los autores autor.ejs */
