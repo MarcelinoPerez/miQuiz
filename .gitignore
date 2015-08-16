@@ -45,3 +45,5 @@ Temporary Items
 node_modules
 npm-debug.log
 quiz.sqlite
+id_rsa.pub
+id_rsa
