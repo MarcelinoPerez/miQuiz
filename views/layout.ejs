@@ -9,13 +9,18 @@
 	<link rel="stylesheet" href="/stylesheets/smartphone.css" type="text/css"
 		media="only screen and (max-width: 480px)">
 </head>
-<body>
+<body onLoad="setInterval('contador()',1000);">
 <div id="page-wrap">
 	<header class="main" id="h1">
 		<% if(!session.user){ %>
 			<span class="right"><a href="/login">Login</a></span>
 		<% }else{ %>
 			<span class="right"><%= session.user.username %> <a href="/logout">Logout</a></span>
+
+			<form>
+				<label for="contador">La sesión expira en: </label><input type="text" id="contador" ><label>segundos</label>
+			</form>
+
 		<% } %>
 
 		<h2>miQuiz<span>: el juego de las preguntas</span></h2>
@@ -41,6 +46,19 @@
 		<span><a href="http://es.wikipedia.org/wiki/Quiz">¿Que es un Quiz?&nbsp;</a></span>
 		<span><a href="https://github.com/MarcelinoPerez/miQuiz">&nbsp;Repositorio de miQuiz en GitHub.</a></span>
 	</footer>
+	<script type="text/javascript">
+		var cont = <%= parseInt((session.cookie.maxAge = 60000)/1000) %>;
+		function contador(){
+			var contador = document.getElementById("contador");
+			if (cont > 0){
+				contador.value = cont;
+			}else{
+				contador.value = "La sesión ha caducado";
+			}
+			
+			cont--;
+		}
+	</script>
 </div>
 </body>
 </html>
